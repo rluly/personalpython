@@ -114,10 +114,10 @@ while(status):
     print("You guessed the mystery word, ",answer,"! Your time elapsed was: ",difference, "seconds.")
     status3 = True
     try:
-        connection = mysql.connector.connect(host='192.168.150.129',
+        connection = mysql.connector.connect(host='***',
                                             database='wordguess',
-                                            user='superman',
-                                             password='DatabaseSystems2!')
+                                            user='***',
+                                             password='***')
 
         sql_select_Query = "update user set highscore=" + str(highscore) + ",lowest_attempts=" + str(lowest_attempts) + ",total_attempts=" + str(total_attempts) + " where username =\"" + username + "\";"
         print(sql_select_Query)
