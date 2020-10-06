@@ -1,9 +1,14 @@
 import time
 import random
 import mysql.connector
-#order for atts are username,password,highscore,lowest_attempts,total_attempts
 
-f = open("english3.txt")
+#Create the MySQL database "wordguess" and "user" and have the server running
+#prior to use. The order for attributes in the user table are username,password,
+#highscore,lowest_attempts,total_attempts. The types of the attributes are varchar,
+#varchar,float,integer, and integer.
+
+#Replace *** with your txt file
+f = open("***")
 dictionary = f.read().split()
 f.close()
 wordlist = []
@@ -20,7 +25,7 @@ while(usercheck):
     username = input("Please enter a username to keep track of your highscores: ")
 
     try:
-        #for the .connect() options, fill in the *'s with your own SQL server information
+        #for the .connect() options, fill in the *'s with your own MySQL server information.
         connection = mysql.connector.connect(host='***',
                                              user='***',
                                              password='***',
@@ -56,9 +61,6 @@ while(usercheck):
             if passcheck==passcheck2:
                 usercheck  = False
 
-    #print("Total number of rows in Laptop is: ", cursor.rowcount)
-
-    #print("\nPrinting each laptop record")
         if(newcheck==1):
             for row in records:
                 print("username = ", row[0])
@@ -69,9 +71,7 @@ while(usercheck):
                 highscore = row[2]
                 lowest_attempts = row[3]
                 total_attempts = row[4]
-
-#except Error as e:
-    #print("Error reading data from MySQL table", e)
+                
     finally:
         if (connection.is_connected()):
             connection.close()
@@ -83,8 +83,6 @@ while(status):
     starting_point = input("Type any word to start: ")
     index = random.randrange(0,len(wordlist))
     answer = wordlist[index]
-    #index2 = random.randrange(0,len(wordlist))
-    #compare = wordlist[index2]
     if starting_point>answer:
         print("The mystery word is before your starting word. Your time starts now, good luck!")
     else:
